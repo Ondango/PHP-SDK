@@ -1,4 +1,8 @@
 <?php
+/**
+ * Ondanto Team
+ * www.ondango.com 
+ */
 require_once "../libs/Ondango.php";
 
 $api_key = "YOUR API KEY";
