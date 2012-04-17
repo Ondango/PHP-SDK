@@ -59,6 +59,7 @@ class OndangoRequest
 		$options		= array ();
 		$url			= $this->protocol.$this->host.$this->url;
 		$is_POSTorPUT	= (strtolower ($this->method) == "post"  || strtolower ($this->method) == "put");
+		$is_PUT			= (strtolower ($this->method) == "put");
 		
 		if ($is_POSTorPUT)
 		{
@@ -73,9 +74,18 @@ class OndangoRequest
 		(
 			CURLOPT_URL				=> $url,
 			CURLOPT_RETURNTRANSFER	=> true,
+			CURLOPT_FOLLOWLOCATION	=> true,
 			CURLOPT_CUSTOMREQUEST	=> $this->method,
 			CURLOPT_HTTPHEADER		=> $this->headers
 		);
+		
+		if ($is_PUT)
+		{
+			$options = $options + array
+			(
+				CURLOPT_CUSTOMREQUEST	=> "PUT",
+			);
+		}
 
 		return $options;
 	}
