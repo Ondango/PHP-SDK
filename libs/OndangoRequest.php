@@ -4,15 +4,14 @@ require_once dirname (__FILE__)."/OndangoResponse.php";
 
 class OndangoRequest
 {
-	private $protocol		= "http://";
+	private $protocol		= "https://";
 	private $host			= "api.ondango.com/";
 	private $expires		= "+1 hour";
 	private $api_secret		= null;
 	private $method			= null;
 	private $url			= null;
 	private $params			= array ();
-	private $headers		= array
-	(
+	private $headers		= array (
 		"Expect:",
 		"User-Agent: Ondango PHP SDK 0.1"
 	);
@@ -28,20 +27,24 @@ class OndangoRequest
 		$this->params = $params;
 		
 		// Sign request
-		if (!empty ($this->api_secret))
-		{
+		if (!empty ($this->api_secret)) {
 			$this->params["api_expires"] = gmdate ('Y-m-d H:i:s+00:00', strtotime ($this->expires));
 			$this->params["api_signature"] = $this->create_signature ();
 		}
 	}
 
 
+	/**
+	 * Execute the cURL script and transform the returning JSON into a PHP object
+	 * 
+	 * @return object
+	 */
 	public function execute ()
 	{
 		$curl = curl_init ();
 		$response = new OndangoResponse ();
 
-		curl_setopt_array ($curl, $this->get_curlOptions ());
+		curl_setopt_array ($curl, $this->set_curlOptions ());
 
 		$response->data				= curl_exec ($curl);
 		$response->curl_info		= curl_getinfo ($curl);
@@ -50,28 +53,31 @@ class OndangoRequest
 
 		curl_close ($curl);
 
-		return $response->has_error () ? $response->error () : $response->data;
+		return json_decode ($response->has_error () ? $response->error () : $response->data);
 	}
 
 
-	private function get_curlOptions ()
+	/**
+	 * Set needed cURL options
+	 * Define different options depending on transfer method (GET, PUT, POST or DELETE)
+	 * 
+	 * @return type 
+	 */
+	private function set_curlOptions ()
 	{
 		$options		= array ();
 		$url			= $this->protocol.$this->host.$this->url;
 		$is_POSTorPUT	= (strtolower ($this->method) == "post"  || strtolower ($this->method) == "put");
 		$is_PUT			= (strtolower ($this->method) == "put");
 		
-		if ($is_POSTorPUT)
-		{
+		if ($is_POSTorPUT) {
 			$options[CURLOPT_POSTFIELDS] = $this->params;
 		}
-		else
-		{
+		else {
 			$url .= "?".http_build_query ($this->params);
 		}
 
-		$options = $options + array
-		(
+		$options = $options + array (
 			CURLOPT_URL				=> $url,
 			CURLOPT_RETURNTRANSFER	=> true,
 			CURLOPT_FOLLOWLOCATION	=> true,
@@ -79,10 +85,8 @@ class OndangoRequest
 			CURLOPT_HTTPHEADER		=> $this->headers
 		);
 		
-		if ($is_PUT)
-		{
-			$options = $options + array
-			(
+		if ($is_PUT) {
+			$options = $options + array (
 				CURLOPT_CUSTOMREQUEST	=> "PUT",
 			);
 		}
@@ -90,6 +94,11 @@ class OndangoRequest
 		return $options;
 	}
 	
+	/**
+	 * Create a hash (sha1) with all the parameters that are going to be send to the API
+	 * 
+	 * @return string
+	 */
 	private function create_signature ()
 	{
 		return hash_hmac ("sha1", http_build_query ($this->params), $this->api_secret);
