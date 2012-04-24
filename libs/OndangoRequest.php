@@ -61,7 +61,7 @@ class OndangoRequest
 	 * Set needed cURL options
 	 * Define different options depending on transfer method (GET, PUT, POST or DELETE)
 	 * 
-	 * @return type 
+	 * @return array 
 	 */
 	private function set_curlOptions ()
 	{
