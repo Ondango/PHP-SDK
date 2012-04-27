@@ -1,4 +1,14 @@
 <?php
+/**
+ *	Ondango PHP-SDK for Ondango API
+ *	written by Claudio Bredfeldt & Antonio López Muzas
+ *	
+ *	http://github.com/Ondango/PHP-SDK
+ *	http://apidocs.ondango.com
+ *
+ *	Copyright (c) 2012 Ondango GmbH (http://ondango.com)
+ *	Dual licensed under the MIT and GPL licenses.
+ */
 
 require_once dirname (__FILE__)."/OndangoResponse.php";
 
@@ -37,7 +47,7 @@ class OndangoRequest
 	/**
 	 * Execute the cURL script and transform the returning JSON into a PHP object
 	 * 
-	 * @return object
+	 * @return string JSON
 	 */
 	public function execute ()
 	{
@@ -53,7 +63,7 @@ class OndangoRequest
 
 		curl_close ($curl);
 
-		return json_decode ($response->has_error () ? $response->error () : $response->data);
+		return $response->has_error () ? $response->error () : $response->data;
 	}
 
 

@@ -1,4 +1,14 @@
 <?php
+/**
+ *	Ondango PHP-SDK for Ondango API
+ *	written by Claudio Bredfeldt & Antonio López Muzas
+ *	
+ *	http://github.com/Ondango/PHP-SDK
+ *	http://apidocs.ondango.com
+ *
+ *	Copyright (c) 2012 Ondango GmbH (http://ondango.com)
+ *	Dual licensed under the MIT and GPL licenses.
+ */
 
 class OndangoResponse
 {

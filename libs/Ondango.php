@@ -1,11 +1,21 @@
 <?php
-
+/**
+ *	Ondango PHP-SDK for Ondango API
+ *	written by Claudio Bredfeldt & Antonio López Muzas
+ *	
+ *	http://github.com/Ondango/PHP-SDK
+ *	http://apidocs.ondango.com
+ *
+ *	Copyright (c) 2012 Ondango GmbH (http://ondango.com)
+ *	Dual licensed under the MIT and GPL licenses.
+ */
+ 
 require_once dirname (__FILE__)."/OndangoRequest.php";
 
 class Ondango
 {
-	private $api_key			= null;
-	private $api_secret			= null;
+	private $api_key		= null;
+	private $api_secret		= null;
 
 
 	public function __construct ($api_key, $api_secret = null)
@@ -16,7 +26,7 @@ class Ondango
 
 
 	/**
-	 * Magic methods for GET, PUT, POST or DELETE
+	 * Magic method for GET, PUT, POST or DELETE
 	 * 
 	 * @param string $method GET, PUT, POST or DELETE
 	 * @param array $args
@@ -40,15 +50,15 @@ class Ondango
 	 * Compose and execute a specific api url (i.e: /shops?api_key=...&id=n)
 	 * 
 	 * @param string $method GET, PUT, POST or DELETE
-	 * @param string $url i.e: /sales
+	 * @param string $url
 	 * @param array $params [optional]	i.e: array ("shop_id" => 5)
-	 * @return string JSON
+	 * @return object
 	 */
 	public function request ($method, $url, $params = array ())
 	{
 		$request = new OndangoRequest ($method, $url, $this->init_params ($params));
 
-		return $request->execute ();
+		return json_decode ($request->execute ());
 	}
 	
 	/**
