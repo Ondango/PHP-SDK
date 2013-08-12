@@ -14,7 +14,7 @@ $ondango = new Ondango ($api_key, $api_secret);
 
 
 // Retrieve all sales for a specific shop
-// See: http://apidocs.ondango.com/rest/sales/all/get.php
+// See: http://apidocs.ondango-shops.com/rest/sales/all/get.php
 $results = $ondango->GET ("sales/all", array ("shop_id" => 50));
 
 

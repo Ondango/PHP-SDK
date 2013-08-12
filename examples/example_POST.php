@@ -14,7 +14,7 @@ $ondango = new Ondango ($api_key, $api_secret);
 
 
 // Create a new category
-// See: http://apidocs.ondango.com/rest/category/post.php
+// See: http://apidocs.ondango-shops.com/rest/category/post.php
 $results = $ondango->POST ("category", array ("shop_id" => 50, "name" => "T-Shirt's", "order" => 1));
 
 

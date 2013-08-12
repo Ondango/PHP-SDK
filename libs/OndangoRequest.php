@@ -4,7 +4,7 @@
  *	written by Claudio Bredfeldt & Antonio López Muzas
  *	
  *	http://github.com/Ondango/PHP-SDK
- *	http://apidocs.ondango.com
+ *	http://apidocs.ondango-shops.com
  *
  *	Copyright (c) 2012 Ondango GmbH (http://ondango.com)
  *	Dual licensed under the MIT and GPL licenses.
@@ -15,7 +15,7 @@ require_once dirname (__FILE__)."/OndangoResponse.php";
 class OndangoRequest
 {
 	private $protocol		= "https://";
-	private $host			= "api.ondango.com/";
+	private $host			= "api.ondango-shops.com/";
 	private $expires		= "+1 hour";
 	private $api_secret		= null;
 	private $method			= null;
