@@ -14,7 +14,7 @@ $ondango = new Ondango ($api_key, $api_secret);
 
 
 // Delete a shop
-// See: http://apidocs.ondango-shops.com/rest/shop/delete.php
+// See: http://www..ondango-shops.com/apidocs/rest/shop/delete.php
 $results = $ondango->DELETE ("shop", array ("shop_id" => 50));
 
 

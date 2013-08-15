@@ -4,7 +4,7 @@
  *	written by Claudio Bredfeldt & Antonio López Muzas
  *	
  *	http://github.com/Ondango/PHP-SDK
- *	http://apidocs.ondango-shops.com
+ *	http://www.ondango-shops.com/apidocs/
  *
  *	Copyright (c) 2012 Ondango GmbH (http://ondango.com)
  *	Dual licensed under the MIT and GPL licenses.
