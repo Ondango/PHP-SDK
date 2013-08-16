@@ -15,7 +15,7 @@ require_once dirname (__FILE__)."/OndangoResponse.php";
 class OndangoRequest
 {
 	private $protocol		= "https://";
-	private $host			= "ondango-shops.com/api/";
+	private $host			= "ondango-shops.com/cms/api/";
 	private $expires		= "+1 hour";
 	private $api_secret		= null;
 	private $method			= null;
