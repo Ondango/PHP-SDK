@@ -93,7 +93,8 @@ class OndangoRequest
 			CURLOPT_FOLLOWLOCATION	=> true,
 			CURLOPT_CUSTOMREQUEST	=> $this->method,
 			CURLOPT_HTTPHEADER		=> $this->headers,
-			CURLOPT_SSLVERSION		=> 3
+			CURLOPT_SSLVERSION		=> 3,
+			CURLOPT_SSL_VERIFYPEER  => false
 		);
 		
 		if ($is_PUT) {
