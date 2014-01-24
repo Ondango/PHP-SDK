@@ -4,7 +4,7 @@
  *	written by Claudio Bredfeldt & Antonio López Muzas
  *	
  *	http://github.com/Ondango/PHP-SDK
- *	http://www.ondango-shops.com/apidocs/
+ *	http://www.ondango.com/apidocs/
  *
  *	Copyright (c) 2012 Ondango GmbH (http://ondango.com)
  *	Dual licensed under the MIT and GPL licenses.
@@ -40,7 +40,7 @@ class Ondango
 			die ("Fatal error: Call to undefined method Ondango::{$method}(). Only following magic methods are allowed: ".implode (", ", $allowed_methods));
 		}
 		else if (empty ($args[0])) {
-			die ("Fatal error: Missing argument 1 for Ondango::{$method}(). You have to provide a api url (see: http://www.ondango-shops.com/apidocs/");
+			die ("Fatal error: Missing argument 1 for Ondango::{$method}(). You have to provide a api url (see: http://www.ondango.com/apidocs/");
 		}
 
 		return $this->request ($method, $args[0], $args[1]);

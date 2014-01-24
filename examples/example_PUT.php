@@ -14,7 +14,7 @@ $ondango = new Ondango ($api_key, $api_secret);
 
 
 // Update the price of a product
-// See: http://www.ondango-shops.com/apidocs/rest/product/put.php
+// See: http://www.ondango.com/apidocs/rest/product/put.php
 $results = $ondango->PUT ("product", array ("product_id" => 10, "price" => 110.99, "price_old" => 149.99));
 
 
